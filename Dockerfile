@@ -1,15 +1,7 @@
 FROM ubuntu:latest
-MAINTAINER Romans <me@nearly.guru>
+MAINTAINER Adam <adam@adam-neale.co.uk>
 
 # This dockerfile is suitable for installing Wordpress
-# installation. The script will also look for /data volume
-# in anticipation of an existing wordpress install. If it's
-# found, then it will analyse it's contents and will
-# link assets like this:
-#
-#  data/wp-content folder symlinked
-#  data/.htaccess symlinked
-#  data/init.sh script initialized
 
 RUN apt-get update
 RUN apt-get -y upgrade
@@ -42,9 +34,8 @@ RUN chown -R www-data:www-data /app
 # Use our default config
 ADD wp-config.php /app/wp-config.php
 
-# Initialize custom config from volume
-ADD volume-init.sh /volume-init.sh
-RUN chmod 755 /volume-init.sh
+# Initialize volume
+VOLUME /app/wp-content
 
 # Configure and start apache
 ADD vhost.conf /etc/apache2/sites-enabled/000-default.conf

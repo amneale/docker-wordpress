@@ -13,10 +13,6 @@ define( 'DB_COLLATE', ''     );
 
 define('FS_METHOD', 'direct');
 
-#define('WP_HOME','http://usblog.triumph.com');
-#define('WP_SITEURL','http://usblog.triumph.com');
-
-
 $table_prefix  = 'wp_';
 
 define('WP_DEBUG', false);
